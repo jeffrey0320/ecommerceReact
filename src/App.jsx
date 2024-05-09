@@ -11,11 +11,19 @@ import minusImg from "./images/icon-minus.svg";
 import plusImg from "./images/icon-plus.svg";
 import rightArrow from "./images/icon-next.svg";
 import leftArrow from "./images/icon-previous.svg";
+import thumbnail from "./images/image-product-1-thumbnail.jpg";
+import xMenu from "./images/icon-close.svg";
 import { useState } from "react";
 
 function App() {
   const [quantity, setQuantity] = useState(0);
   const [arrIndex, setArrIndex] = useState(0);
+  const [show, setShow] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [cartQuantity, setCartQuantity] = useState(quantity);
+  const price = 125.00 * {cartQuantity};
+
   const IMAGES = [sneakerImg, sneakerImg2, sneakerImg3, sneakerImg4];
 
   function handlePlus() {
@@ -42,26 +50,51 @@ function App() {
     setArrIndex(newIndex);
   }
 
-  function handleCartBtn() {}
+  function handleCartBtn() {
+    setShow(true);
+    setCartQuantity(quantity);
+  }
+
+  function handleCartDisplay() {
+    setShowCart(!showCart);
+  }
+
+  function handleMenu(){
+    setShowMenu(!showMenu);
+  }
 
   return (
     <>
       <div className="header">
-        <div className="logo-menu">
-          <picture>
+        <div className="logo-menu" >
+          <picture onClick={handleMenu} >
             <img src={hamburgerIcon} />
           </picture>
           <img src={logo} />
         </div>
         <div className="user-profile">
-          <div>
-            <img src={cartIcon} />
-            <div className="quantityCart">
-              <p>{quantity}</p>
+          <div className="cartDiv">
+            <img src={cartIcon} onClick={handleCartDisplay}/>
+            {show ? (<div className="quantityCart">
+              <p>{cartQuantity}</p>
+            </div>) : null}
+            {showCart && (
+            <div className="cartDisplay">
+              <p>Cart</p>
+              <hr />
+              <div className="cartInfo">
+                <img src={thumbnail}/>
+                <div>
+                  <p>Fall Limited Edition Sneakers</p>
+                  <p>$125.00 x {cartQuantity} ${price}</p>
+                </div>
+              </div>
             </div>
+            )}
           </div>
           <img className="profile-img" src={profileIcon} />
         </div>
+        
       </div>
       <div className="body">
         <div className="imgButtons">
@@ -107,6 +140,18 @@ function App() {
           </button>
         </div>
       </div>
+      {showMenu ?
+      (<>
+      <div className="menu">
+          <img src={xMenu} onClick={handleMenu}/>
+            <ul>
+              <li>Collections</li>
+              <li>Men</li>
+              <li>Women</li>
+              <li>About</li>
+              <li>Contact</li>
+            </ul>
+      </div><div className="overlay"></div></>) : null}
     </>
   );
 }
