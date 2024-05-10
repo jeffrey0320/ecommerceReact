@@ -252,20 +252,32 @@ body {
   & p {
     font-weight: 700;
   }
+
+  & .emptyCart {
+    height: 100%;
+    display: grid;
+    place-content: center;
+
+    & p {
+      margin: auto 0;
+    }
+  }
 }
 
 .cartInfo {
+  height: 100%;
   display: flex;
-  flex-direction: row;
   gap: 1rem;
 
-  & img {
+  & .thumbnailImg {
+    display: inline-block;
     height: 55px;
     width: 55px;
     border-radius: 0.5rem;
   }
 
   & p {
+    display: inline-block;
     font-weight: 400;
     color: hsl(219, 9%, 45%);
   }
@@ -279,7 +291,7 @@ body {
   position: absolute;
   top: 0px;
   padding: 1.7rem;
-  
+
   display: flex;
   gap: 3rem;
   flex-direction: column;
@@ -307,4 +319,13 @@ body {
   opacity: 1;
   width: 100%;
   height: 100%;
+}
+
+.cartCheckoutBtn {
+  display: block;
+}
+
+.cartItems {
+  display: flex;
+  flex-direction: column;
 }

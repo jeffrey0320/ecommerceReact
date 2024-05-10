@@ -13,6 +13,7 @@ import rightArrow from "./images/icon-next.svg";
 import leftArrow from "./images/icon-previous.svg";
 import thumbnail from "./images/image-product-1-thumbnail.jpg";
 import xMenu from "./images/icon-close.svg";
+import trash from "./images/icon-delete.svg";
 import { useState } from "react";
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [cartQuantity, setCartQuantity] = useState(quantity);
-  const price = 125.00 * {cartQuantity};
+  const price = 125.0 * cartQuantity;
 
   const IMAGES = [sneakerImg, sneakerImg2, sneakerImg3, sneakerImg4];
 
@@ -59,42 +60,57 @@ function App() {
     setShowCart(!showCart);
   }
 
-  function handleMenu(){
+  function handleMenu() {
     setShowMenu(!showMenu);
+  }
+
+  function handleDeletion() {
+    setCartQuantity(0);
   }
 
   return (
     <>
       <div className="header">
-        <div className="logo-menu" >
-          <picture onClick={handleMenu} >
+        <div className="logo-menu">
+          <picture onClick={handleMenu}>
             <img src={hamburgerIcon} />
           </picture>
           <img src={logo} />
         </div>
         <div className="user-profile">
           <div className="cartDiv">
-            <img src={cartIcon} onClick={handleCartDisplay}/>
-            {show ? (<div className="quantityCart">
-              <p>{cartQuantity}</p>
-            </div>) : null}
-            {showCart && (
-            <div className="cartDisplay">
-              <p>Cart</p>
-              <hr />
-              <div className="cartInfo">
-                <img src={thumbnail}/>
-                <div>
-                  <p>Fall Limited Edition Sneakers</p>
-                  <p>$125.00 x {cartQuantity} ${price}</p>
-                </div>
+            <img src={cartIcon} onClick={handleCartDisplay} />
+            {show ? (
+              <div className="quantityCart">
+                <p>{cartQuantity}</p>
               </div>
-            </div>
+            ) : null}
+            {showCart && (
+              <div className="cartDisplay">
+                <p>Cart</p>
+                <hr />
+                {cartQuantity === 0 ? (
+                  <div className="emptyCart">
+                    <p>Your cart is empty</p>
+                  </div>
+                ) : (
+                  <div className="cartInfo">
+                    <div className="cartItems">
+                      <img className="thumbnailImg" src={thumbnail} />
+                      <p>Fall Limited Edition Sneakers</p>
+                      <p>
+                        $125.00 x {cartQuantity} <strong>${price}.00</strong>
+                      </p>
+                    </div>
+                    <img src={trash} onClick={handleDeletion} />
+                    <button className="cartCheckoutBtn">Checkout</button>
+                  </div>
+                )}
+              </div>
             )}
           </div>
           <img className="profile-img" src={profileIcon} />
         </div>
-        
       </div>
       <div className="body">
         <div className="imgButtons">
@@ -140,10 +156,10 @@ function App() {
           </button>
         </div>
       </div>
-      {showMenu ?
-      (<>
-      <div className="menu">
-          <img src={xMenu} onClick={handleMenu}/>
+      {showMenu ? (
+        <>
+          <div className="menu">
+            <img src={xMenu} onClick={handleMenu} />
             <ul>
               <li>Collections</li>
               <li>Men</li>
@@ -151,7 +167,10 @@ function App() {
               <li>About</li>
               <li>Contact</li>
             </ul>
-      </div><div className="overlay"></div></>) : null}
+          </div>
+          <div className="overlay"></div>
+        </>
+      ) : null}
     </>
   );
 }
