@@ -80,7 +80,7 @@ function App() {
         <div className="user-profile">
           <div className="cartDiv">
             <img src={cartIcon} onClick={handleCartDisplay} />
-            {show ? (
+            {show && cartQuantity !== 0 ? (
               <div className="quantityCart">
                 <p>{cartQuantity}</p>
               </div>
