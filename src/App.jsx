@@ -131,6 +131,12 @@ function App() {
           </button>
         </div>
         <img className="itemImg" src={IMAGES[arrIndex]} />
+        <div className="imagesUnderDiv">
+          <img className="imagesUnder" src={IMAGES[0]} />
+          <img className="imagesUnder" src={IMAGES[1]} />
+          <img className="imagesUnder" src={IMAGES[2]} />
+          <img className="imagesUnder" src={IMAGES[3]} />
+        </div>
       </div>
       <div className="footer">
         <div className="sneakerInfo">
