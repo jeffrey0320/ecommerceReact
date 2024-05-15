@@ -44,6 +44,10 @@ body {
     justify-content: center;
     cursor: pointer;
   }
+
+  & .desktopMenu {
+    display: none;
+  }
 }
 
 .user-profile {
@@ -317,7 +321,7 @@ body {
 }
 
 .overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
@@ -346,6 +350,42 @@ body {
 
   .header {
     grid-column: 1 / span 2;
+    border-bottom: 1px solid hsl(219, 9%, 45%);
+    padding: 0;
+    margin: 1.2rem 1rem;
+  }
+
+  .logo-menu {
+    gap: 3rem;
+    height: 100%;
+
+    & picture {
+      display: none;
+    }
+
+    & .desktopMenu {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+
+      & ul {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        color: hsl(219, 9%, 45%);
+
+        & li {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+        }
+
+        & li:hover {
+          color: black;
+          border-bottom: 2px solid orange;
+        }
+      }
+    }
   }
 
   .body {
@@ -368,4 +408,14 @@ body {
   .footer {
     gap: 2rem;
   }
+
+  .menu {
+    & img {
+      display: none;
+    }
+  }
+
+  .mobileMenu {}
+
+  .overlay {}
 }

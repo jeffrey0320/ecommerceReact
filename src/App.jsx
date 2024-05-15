@@ -76,6 +76,15 @@ function App() {
             <img src={hamburgerIcon} />
           </picture>
           <img src={logo} />
+          <div className="desktopMenu">
+            <ul>
+              <li>Collections</li>
+              <li>Men</li>
+              <li>Women</li>
+              <li>About</li>
+              <li>Contact</li>
+            </ul>
+          </div>
         </div>
         <div className="user-profile">
           <div className="cartDiv">
@@ -160,7 +169,7 @@ function App() {
         <>
           <div className="menu">
             <img src={xMenu} onClick={handleMenu} />
-            <ul>
+            <ul className="mobileMenu">
               <li>Collections</li>
               <li>Men</li>
               <li>Women</li>
