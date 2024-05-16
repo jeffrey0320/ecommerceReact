@@ -68,6 +68,10 @@ function App() {
     setCartQuantity(0);
   }
 
+  function handleThumbnails(index) {
+    setArrIndex(index);
+  }
+
   return (
     <>
       <div className="header">
@@ -132,10 +136,13 @@ function App() {
         </div>
         <img className="itemImg" src={IMAGES[arrIndex]} />
         <div className="imagesUnderDiv">
-          <img className="imagesUnder" src={IMAGES[0]} />
-          <img className="imagesUnder" src={IMAGES[1]} />
-          <img className="imagesUnder" src={IMAGES[2]} />
-          <img className="imagesUnder" src={IMAGES[3]} />
+          {IMAGES.map((data, i) => (
+            <img
+              className="imagesUnder"
+              src={IMAGES[i]}
+              onClick={() => setArrIndex(i)}
+            />
+          ))}
         </div>
       </div>
       <div className="footer">
