@@ -144,7 +144,6 @@ function App() {
             />
           ))}
         </div>
-        <div></div>
       </div>
       <div className="footer">
         <div className="sneakerInfo">
