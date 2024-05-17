@@ -190,6 +190,10 @@ body {
       outline-color: white;
     }
   }
+
+  & .cartBtn:hover {
+    background-color: hsla(26, 100%, 55%, 0.5);
+  }
 }
 
 .imgButtons {
@@ -242,7 +246,7 @@ body {
 .cartDisplay {
   position: absolute;
   height: 16rem;
-  width: 21rem;
+  width: 23rem;
   background: white;
   border-radius: 0.5rem;
   padding: 1rem;
@@ -273,7 +277,9 @@ body {
 .cartInfo {
   height: 100%;
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem 0;
 
   & .thumbnailImg {
     display: inline-block;
@@ -287,6 +293,18 @@ body {
     font-weight: 400;
     color: hsl(219, 9%, 45%);
   }
+
+  & .deleteIcon {
+    height: 20px;
+    width: 16px;
+  }
+}
+
+.container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
 }
 
 .menu {
@@ -332,16 +350,34 @@ body {
 }
 
 .cartCheckoutBtn {
-  display: block;
+  height: fit-content;
+  padding: 1rem;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  background-color: hsl(26, 100%, 55%);
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.cartCheckoutBtn:hover {
+  background-color: hsla(26, 100%, 55%, 0.5);
 }
 
 .cartItems {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
 }
 
 .imagesUnderDiv {
   display: none;
+}
+
+.priceTag {
+  font-weight: 700;
+  color: black;
 }
 
 @media screen and (min-width: 900px) {
@@ -378,10 +414,7 @@ body {
     height: 28px;
     width: 28px;
 
-    & img {
-      width: 100%;
-      height: 100%;
-    }
+    & img {}
   }
 
   .logo-menu {
@@ -481,6 +514,20 @@ body {
     width: 100px;
     border-radius: 0.5rem;
     cursor: pointer;
+  }
+
+  .imagesUnderActive {
+    height: 100px;
+    width: 100px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    filter: opacity(0.35);
+    border: 2px solid orange;
+  }
+
+  .imagesUnder:hover,
+  .imagesUnder:focus {
+    filter: opacity(0.5);
   }
 
   .quantityBtn {

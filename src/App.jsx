@@ -108,14 +108,23 @@ function App() {
                   </div>
                 ) : (
                   <div className="cartInfo">
-                    <div className="cartItems">
+                    <div className="container">
                       <img className="thumbnailImg" src={thumbnail} />
-                      <p>Fall Limited Edition Sneakers</p>
-                      <p>
-                        $125.00 x {cartQuantity} <strong>${price}.00</strong>
-                      </p>
+                      <div className="cartItems">
+                        <p className="item_name">
+                          Fall Limited Edition Sneakers
+                        </p>
+                        <p className="item_description">
+                          $125.00 x {cartQuantity}{" "}
+                          <span className="priceTag">${price}.00</span>
+                        </p>
+                      </div>
+                      <img
+                        className="deleteIcon"
+                        src={trash}
+                        onClick={handleDeletion}
+                      />
                     </div>
-                    <img src={trash} onClick={handleDeletion} />
                     <button className="cartCheckoutBtn">Checkout</button>
                   </div>
                 )}
@@ -138,7 +147,7 @@ function App() {
         <div className="imagesUnderDiv">
           {IMAGES.map((data, i) => (
             <img
-              className="imagesUnder"
+              className={i === arrIndex ? "imagesUnderActive" : "imagesUnder"}
               src={IMAGES[i]}
               onClick={() => setArrIndex(i)}
             />
