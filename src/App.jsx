@@ -1,8 +1,5 @@
 import "./App.css";
-import hamburgerIcon from "./images/icon-menu.svg";
-import logo from "./images/logo.svg";
 import cartIcon from "./images/icon-cart.svg";
-import profileIcon from "./images/image-avatar.png";
 import sneakerImg from "./images/image-product-1.jpg";
 import sneakerImg2 from "./images/image-product-2.jpg";
 import sneakerImg3 from "./images/image-product-3.jpg";
@@ -11,19 +8,16 @@ import minusImg from "./images/icon-minus.svg";
 import plusImg from "./images/icon-plus.svg";
 import rightArrow from "./images/icon-next.svg";
 import leftArrow from "./images/icon-previous.svg";
-import thumbnail from "./images/image-product-1-thumbnail.jpg";
 import xMenu from "./images/icon-close.svg";
-import trash from "./images/icon-delete.svg";
 import { useState } from "react";
+import Header from "./Components/Header";
 
 function App() {
   const [quantity, setQuantity] = useState(0);
   const [arrIndex, setArrIndex] = useState(0);
-  const [show, setShow] = useState(false);
-  const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [show, setShow] = useState(false);
   const [cartQuantity, setCartQuantity] = useState(quantity);
-  const price = 125.0 * cartQuantity;
 
   const IMAGES = [sneakerImg, sneakerImg2, sneakerImg3, sneakerImg4];
 
@@ -37,6 +31,10 @@ function App() {
     if (quantity <= 0) {
       setQuantity(0);
     }
+  }
+
+  function handleMenu() {
+    setShowMenu(!showMenu);
   }
 
   function handleNext() {
@@ -56,84 +54,17 @@ function App() {
     setCartQuantity(quantity);
   }
 
-  function handleCartDisplay() {
-    setShowCart(!showCart);
-  }
-
-  function handleMenu() {
-    setShowMenu(!showMenu);
-  }
-
   function handleDeletion() {
     setCartQuantity(0);
   }
 
-  function handleThumbnails(index) {
-    setArrIndex(index);
-  }
-
   return (
     <>
-      <div className="header">
-        <div className="logo-menu">
-          <picture onClick={handleMenu}>
-            <img src={hamburgerIcon} />
-          </picture>
-          <img src={logo} />
-          <div className="desktopMenu">
-            <ul>
-              <li>Collections</li>
-              <li>Men</li>
-              <li>Women</li>
-              <li>About</li>
-              <li>Contact</li>
-            </ul>
-          </div>
-        </div>
-        <div className="user-profile">
-          <div className="cartDiv">
-            <img src={cartIcon} onClick={handleCartDisplay} />
-            {show && cartQuantity !== 0 ? (
-              <div className="quantityCart">
-                <p>{cartQuantity}</p>
-              </div>
-            ) : null}
-            {showCart && (
-              <div className="cartDisplay">
-                <p>Cart</p>
-                <hr />
-                {cartQuantity === 0 ? (
-                  <div className="emptyCart">
-                    <p>Your cart is empty</p>
-                  </div>
-                ) : (
-                  <div className="cartInfo">
-                    <div className="container">
-                      <img className="thumbnailImg" src={thumbnail} />
-                      <div className="cartItems">
-                        <p className="item_name">
-                          Fall Limited Edition Sneakers
-                        </p>
-                        <p className="item_description">
-                          $125.00 x {cartQuantity}{" "}
-                          <span className="priceTag">${price}.00</span>
-                        </p>
-                      </div>
-                      <img
-                        className="deleteIcon"
-                        src={trash}
-                        onClick={handleDeletion}
-                      />
-                    </div>
-                    <button className="cartCheckoutBtn">Checkout</button>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-          <img className="profile-img" src={profileIcon} />
-        </div>
-      </div>
+      <Header
+        cartQuantity={cartQuantity}
+        show={show}
+        handleDeletion={handleDeletion}
+      />
       <div className="body">
         <div className="imgButtons">
           <button onClick={handlePrevious}>
