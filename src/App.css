@@ -414,8 +414,6 @@ body {
   .cartDiv {
     height: 28px;
     width: 28px;
-
-    & img {}
   }
 
   .logo-menu {

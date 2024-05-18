@@ -6,8 +6,13 @@ import trash from "../images/icon-delete.svg";
 import cartIcon from "../images/icon-cart.svg";
 import { useState } from "react";
 
-const Header = ({ cartQuantity, show, handleDeletion }) => {
-  const [showMenu, setShowMenu] = useState(false);
+const Header = ({
+  cartQuantity,
+  show,
+  showMenu,
+  setShowMenu,
+  handleDeletion,
+}) => {
   const [showCart, setShowCart] = useState(false);
   const price = 125.0 * cartQuantity;
 
@@ -16,6 +21,7 @@ const Header = ({ cartQuantity, show, handleDeletion }) => {
   }
 
   function handleMenu() {
+    console.log(showMenu);
     setShowMenu(!showMenu);
   }
 
